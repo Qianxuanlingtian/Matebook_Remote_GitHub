@@ -1,20 +1,24 @@
 import timeit
-#迭代函数
+
+#迭代函数，亦是动态规划(Dynamic programming recursion)
 def fibIter(n):
     num1, num2 = 0, 1
     for i in range(n):
         num1, num2 = num2, num1 + num2
     return num1
-#普通递归函数
+
+#普通递归函数，亦是分治法递归(Divide and conquer recursion)
 def fibRecursion(n):
     if n == 1 or n == 2:
         return 1
     return fibRecursion(n - 1) + fibRecursion(n - 2)
+
 #递归优化方法一：尾递归(Tail recursion)
 def fibRec_TailRec(n, ret1 = 0, ret2 = 1):
     if n <= 1:
         return ret2
     return fibRec_TailRec(n - 1, ret2, ret1 + ret2)
+
 #递归优化方法二：记忆化递归(Memorization recursion)
 def fibRec_MemoRec(n, cache = {}):
     if n in cache:
@@ -23,10 +27,6 @@ def fibRec_MemoRec(n, cache = {}):
         return n
     cache[n] = fibRec_MemoRec(n - 1) + fibRec_MemoRec(n - 2)
     return cache[n]
-#递归优化方法三：分治法递归(Divide and conquer recursion)
-
-#递归优化方法四：动态规划(Dynamic programming recursion)
-    
 
 #迭代函数调用
 print('计算斐波那契数列f(12)的迭代函数调用结果', fibIter(12))
